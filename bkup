@@ -1,0 +1,40 @@
+#!/bin/bash
+
+if (($#!=2))
+then
+    echo "Error! Usage: Must contain two args, Source Dir and Destination Dir" >&2 
+    exit 1
+fi
+
+if [[ ! -d $1 ]]
+then
+    echo "Source dir does not exist!" >&2
+    exit 1
+fi
+
+if [[ ! -d $2 ]]
+then
+    mkdir -p $2
+fi
+
+for FILE in $1/*
+do
+    FILENAME=$(basename $FILE)
+    X=${#FILENAME}
+    ((X--))
+    SUFFIX=""
+    for Y in $(seq 0 $X)
+    do
+#	SUFFIX=""
+        if [[ ${FILENAME:$Y:1} = . ]]
+	then
+	    SUFFIX=${FILENAME:$Y}
+        fi    
+    done
+#        BACKUP=$2/$(basename $FILE $SUFFIX)-BACKUP$SUFFIX
+	
+		            
+    cp $1/$FILENAME $2/$(basename $FILE $SUFFIX)-BACKUP$SUFFIX 2>/dev/null
+done	     
+    
+	

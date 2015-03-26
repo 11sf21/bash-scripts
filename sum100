@@ -1,0 +1,14 @@
+((SUM=0))
+for ARG in $*
+do
+    ((SUM=SUM+$1))
+    shift
+done
+if ((SUM==100))
+then
+    echo 'sum is 100'
+    exit 0
+else
+    echo 'sum is not 100' >&2
+    exit 1
+fi

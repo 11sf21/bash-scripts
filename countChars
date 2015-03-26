@@ -1,0 +1,15 @@
+#!/bin/bash
+
+((NUM=0))
+echo $NUM
+Z=$1
+X=${#Z}
+((X--))
+for Y in $(seq 0 $X)
+do
+    if [[ ${1:$Y:1} = $2 ]]
+    then
+        ((NUM++))
+    fi
+done
+echo $NUM

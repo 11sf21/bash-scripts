@@ -1,0 +1,13 @@
+#!/bin/bash
+PROGRAM=$1
+FILENAME=$2
+EXPECTED_ANSWER=$3
+
+EXIT_STATUS=0
+
+if ! $PROGRAM $FILENAME 2>error_output >regular_output
+then
+    echo "Error:  $PROGRAM $FILENAME exited with an error status" >&2
+    EXIT_STATUS=1
+fi
+
